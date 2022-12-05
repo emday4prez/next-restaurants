@@ -1,42 +1,43 @@
-import Link from 'next/link'
-import { useState } from 'react'
-import { fetcher } from '../lib/api'
-import { setToken, unsetToken } from '../lib/auth'
-import { useUser } from '../lib/authContext'
+import Link from 'next/link';
+import { useState } from 'react';
+import { fetcher } from '../lib/api';
+import { setToken, unsetToken } from '../lib/auth';
+import { useUser } from '../lib/authContext';
+
 function Navbar() {
   const [data, setData] = useState({
     identifier: '',
     password: '',
-  })
+  });
 
-  const { user, loading } = useUser()
+  const { user, loading } = useUser();
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const response = await fetcher(
+    const responseData = await fetcher(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local`,
       {
         method: 'POST',
-        header: {
+        headers: {
           'Content-Type': 'application/json',
-          body: JSON.stringify({
-            identifier: data.identifier,
-            password: data.password,
-          }),
         },
+        body: JSON.stringify({
+          identifier: data.identifier,
+          password: data.password,
+        }),
       }
-    )
-    setToken(data)
-  }
+    );
+    setToken(responseData);
+  };
 
   const logout = () => {
-    unsetToken()
-  }
+    unsetToken();
+  };
 
   return (
     <div className="navbar bg-purple-600 text-white">
@@ -92,7 +93,7 @@ function Navbar() {
                 name="identifier"
                 onChange={handleChange}
                 placeholder="Username"
-                className="md:p-2 form-input py-2 rounded mx-2"
+                className="md:p-2 form-input py-2 rounded mx-2 text-slate-900"
                 required
               />
               <input
@@ -100,7 +101,7 @@ function Navbar() {
                 name="password"
                 onChange={handleChange}
                 placeholder="Password"
-                className="md:p-2 form-input py-2 rounded mx-2"
+                className="md:p-2 form-input py-2 text-slate-900 rounded mx-2"
                 required
               />
               <button
@@ -124,7 +125,7 @@ function Navbar() {
         ''
       )}
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
