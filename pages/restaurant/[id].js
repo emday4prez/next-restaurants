@@ -16,9 +16,9 @@ export default function Restaurant({ restaurant, dishes }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const { slug } = params;
+  const { id } = params;
   const restaurantResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants/${slug}?populate=%2A`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants/${id}?populate=%2A`
   );
   console.log('restaurantResponse', restaurantResponse);
   return {
