@@ -1,15 +1,16 @@
-import RestaurantsList from '../components/RestaurantsList'
-import { fetcher } from '../lib/api'
-import useSWR from 'swr'
-import { useState } from 'react'
+import RestaurantsList from '../components/RestaurantsList';
+import { fetcher } from '../lib/api';
+import useSWR from 'swr';
+import { useState } from 'react';
+import { useFetchUser } from '../lib/authContext';
 
 export default function Home({ restaurants }) {
-  const [pageIndex, setPageIndex] = useState(1)
+  const [pageIndex, setPageIndex] = useState(1);
   const { data } = useSWR(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=${pageIndex}&pagination[pageSize]=5`,
     fetcher,
     { fallbackData: restaurants }
-  )
+  );
   return (
     <>
       <RestaurantsList restaurants={data} />
@@ -39,19 +40,19 @@ export default function Home({ restaurants }) {
         }`}</span>
       </div>
     </>
-  )
+  );
 }
 
 // export async function getServerSideProps() {}
 
 export async function getStaticProps() {
   const restaurantsResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=1&pagination[pageSize]=5`
-  )
-  // console.log(restaurantsResponse)
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=1&pagination[pageSize]=5&populate=%2A`
+  );
+
   return {
     props: {
       restaurants: restaurantsResponse,
     },
-  }
+  };
 }

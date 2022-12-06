@@ -60,6 +60,14 @@ function Navbar() {
       {!loading &&
         (user ? (
           <li>
+            <p className="md:p-2 py-2 block">{user}</p>
+          </li>
+        ) : (
+          ''
+        ))}
+      {!loading &&
+        (user ? (
+          <li>
             <Link
               href="/profile"
               className="md:p-2 py-2 block hover:text-teal-400"
@@ -70,6 +78,7 @@ function Navbar() {
         ) : (
           ''
         ))}
+
       {!loading &&
         (user ? (
           <li>
