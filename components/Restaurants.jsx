@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 function Restaurants({ restaurants }) {
   return (
@@ -7,16 +7,24 @@ function Restaurants({ restaurants }) {
         {restaurants &&
           restaurants.data.map((restaurant) => {
             return (
-              <li key={restaurant.id}>
+              <li
+                className="border-2 border-teal-200 rounded-xl p-4 hover:border-teal-400"
+                key={restaurant.id}
+              >
                 <Link href={`restaurant/` + restaurant.id}>
-                  {restaurant.attributes.name}
+                  <h1 className="text-purple-600">
+                    {restaurant.attributes.name}
+                  </h1>
+                  <p className="text-lg font-light text-indigo-700">
+                    {restaurant.attributes.description}
+                  </p>
                 </Link>
               </li>
-            )
+            );
           })}
       </ul>
     </>
-  )
+  );
 }
 
-export default Restaurants
+export default Restaurants;

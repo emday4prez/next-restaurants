@@ -1,9 +1,9 @@
-import Navbar from './Navbar'
-import Head from 'next/head'
-
-export default function Layout({ children }) {
+import Navbar from './Navbar';
+import Head from 'next/head';
+import { UserProvider } from '../lib/authContext';
+export default function Layout({ user, loading = false, children }) {
   return (
-    <>
+    <UserProvider value={{ user, loading }}>
       <Head>
         <title>Restaurants App</title>
       </Head>
@@ -25,6 +25,6 @@ export default function Layout({ children }) {
           <div className="text-2xl font-medium">{children}</div>
         </div>
       </main>
-    </>
-  )
+    </UserProvider>
+  );
 }

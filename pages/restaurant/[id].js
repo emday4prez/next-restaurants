@@ -1,6 +1,6 @@
-import { fetcher } from '../../lib/api'
+import { fetcher } from '../../lib/api';
 
-export default function Restaurant({ restaurant }) {
+export default function Restaurant({ restaurant, dishes }) {
   return (
     <>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter mb-4">
@@ -12,18 +12,19 @@ export default function Restaurant({ restaurant }) {
         {restaurant.attributes.description}
       </h2>
     </>
-  )
+  );
 }
 
 export async function getServerSideProps({ params }) {
-  const { slug } = params
+  const { id } = params;
   const restaurantResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants/${slug}`
-  )
-  console.log('response', restaurantResponse)
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants/${id}?populate=%2A`
+  );
+  console.log('restaurantResponse', restaurantResponse);
   return {
     props: {
       restaurant: restaurantResponse.data,
+      dishes: restaurantResponse.data.attributes.dishes.data,
     },
-  }
+  };
 }
