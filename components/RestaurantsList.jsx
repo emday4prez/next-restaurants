@@ -1,7 +1,11 @@
-import Restaurants from './Restaurants'
-
+import Restaurants from './Restaurants';
+import { useState } from 'react';
 function RestaurantsList({ restaurants }) {
-  //console.log(`restaurants`, restaurants)
+  const [query, setQuery] = useState('');
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
   return (
     <div>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter mb-4">
@@ -9,9 +13,19 @@ function RestaurantsList({ restaurants }) {
           Restaurants
         </span>
       </h1>
+
+      <input
+        type="search"
+        name="search"
+        value={query}
+        onChange={handleChange}
+        placeholder="Search"
+        className="md:p-2 form-input py-2 mb-4 rounded  text-slate-900"
+      />
+
       <Restaurants restaurants={restaurants} />
     </div>
-  )
+  );
 }
 
-export default RestaurantsList
+export default RestaurantsList;
