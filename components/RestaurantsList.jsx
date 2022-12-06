@@ -3,7 +3,6 @@ import { useState } from 'react';
 function RestaurantsList({ restaurants }) {
   const [value, setValue] = useState('');
 
-  console.log('restaurants list:', restaurants);
   return (
     <div>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter mb-4">
