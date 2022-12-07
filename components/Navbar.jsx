@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { fetcher } from '../lib/api';
 import { setToken, unsetToken } from '../lib/auth';
 import { useUser } from '../lib/authContext';
-
+import { useCart } from 'react-use-cart';
 function Navbar() {
   const [data, setData] = useState({
     identifier: '',
@@ -11,6 +11,7 @@ function Navbar() {
   });
 
   const { user, loading } = useUser();
+  const { totalUniqueItems } = useCart();
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -134,7 +135,7 @@ function Navbar() {
         ''
       )}
       <Link href="/order" className="btn btn-ghost normal-case text-md">
-        Cart
+        Cart ({totalUniqueItems})
       </Link>
     </div>
   );
