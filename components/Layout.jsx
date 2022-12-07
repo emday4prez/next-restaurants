@@ -1,30 +1,37 @@
 import Navbar from './Navbar';
 import Head from 'next/head';
 import { UserProvider } from '../lib/authContext';
+import { CartProvider } from 'react-use-cart';
+
 export default function Layout({ user, loading = false, children }) {
   return (
-    <UserProvider value={{ user, loading }}>
+    <>
       <Head>
         <title>Restaurants App</title>
       </Head>
-      <Navbar />
-      <main className="px-4">
-        <div
-          className="
+      <CartProvider>
+        <UserProvider value={{ user, loading }}>
+          <Navbar />
+
+          <main className="px-2">
+            <div
+              className="
           flex
           justify-center
           items-center
           bg-indigo-100
           mx-auto
-          w-3/4
+          w-5/6
           rounded-lg
-          my-16
+          mt-8
           p-16
         "
-        >
-          <div className="text-2xl font-medium">{children}</div>
-        </div>
-      </main>
-    </UserProvider>
+            >
+              <div className="text-2xl font-medium">{children}</div>
+            </div>
+          </main>
+        </UserProvider>
+      </CartProvider>
+    </>
   );
 }

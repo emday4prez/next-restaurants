@@ -43,7 +43,7 @@ function Navbar() {
     <div className="navbar bg-purple-600 text-white">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost normal-case text-xl">
-          Restaurants App
+          Restaurants
         </Link>
       </div>
       {/* <div className="flex-none">
@@ -133,6 +133,9 @@ function Navbar() {
       ) : (
         ''
       )}
+      <Link href="/order" className="btn btn-ghost normal-case text-md">
+        Cart
+      </Link>
     </div>
   );
 }

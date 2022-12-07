@@ -1,4 +1,6 @@
+import { useCart } from 'react-use-cart';
 function DishesList({ dishes, value }) {
+  const { addItem } = useCart();
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {dishes &&
@@ -24,7 +26,14 @@ function DishesList({ dishes, value }) {
                   <p className="text-sm">{dish.attributes.description}</p>
                   <p className="text-lg">${dish.attributes.price}</p>
                   <div className="card-actions justify-end">
-                    <button className="btn">Add to Cart</button>
+                    <button
+                      onClick={() =>
+                        addItem({ ...dish.attributes, id: dish.id })
+                      }
+                      className="btn"
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               </div>
