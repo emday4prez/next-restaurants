@@ -46,6 +46,14 @@ function Navbar() {
         <Link href="/" className="btn btn-ghost normal-case text-xl">
           Restaurants
         </Link>
+        <Link href="/order" className=" normal-case text-md">
+          <div className="indicator">
+            <span className="indicator-item indicator-middle badge badge-secondary">
+              {totalUniqueItems}
+            </span>
+            <button className="btn btn-ghost ">Cart</button>
+          </div>
+        </Link>
       </div>
       {/* <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
@@ -97,6 +105,7 @@ function Navbar() {
       {!loading && !user ? (
         <>
           <li>
+            <div></div>
             <form onSubmit={handleSubmit} className="form-inline">
               <input
                 type="text"
@@ -124,7 +133,7 @@ function Navbar() {
           </li>
           <li>
             <Link
-              href="register"
+              href="/register"
               className="md:p-2 block py-2 hover:text-teal-400 text-indigo-100"
             >
               Register
@@ -134,9 +143,6 @@ function Navbar() {
       ) : (
         ''
       )}
-      <Link href="/order" className="btn btn-ghost normal-case text-md">
-        Cart ({totalUniqueItems})
-      </Link>
     </div>
   );
 }

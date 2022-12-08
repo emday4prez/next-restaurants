@@ -11,6 +11,9 @@ const Register = () => {
     password: '',
   });
 
+  const [success, setSuccess] = useState(false);
+  const [createAccountError, setCreateAccountError] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,9 +32,12 @@ const Register = () => {
         }
       );
       setToken(responseData);
-      router.redirect('/profile');
+      setSuccess(true);
+      alert('created account');
+      setCreateAccountError(false);
     } catch (error) {
       console.error(error);
+      setCreateAccountError(true);
     }
   };
 
@@ -40,7 +46,21 @@ const Register = () => {
     setUserData({ ...userData, [name]: value });
   };
   return (
-    <div className="flex w-full">
+    <div className="flex w-full flex-col">
+      {success && (
+        <div className="bg-green-400 rounded-xl text-black h-24 justify-center align-middle">
+          <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
+            Account Created Successfully!
+          </h1>
+        </div>
+      )}
+      {createAccountError && (
+        <div className="bg-red-400 rounded-xl text-black h-24 justify-center align-middle">
+          <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
+            Error Creating Account!
+          </h1>
+        </div>
+      )}
       <div className="w-full bg-white border-2 rounded p-8 m-4 md:max-w-sm md:mx-auto">
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter mb-4">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 py-2">
@@ -88,7 +108,7 @@ const Register = () => {
             />
           </div>
           <button
-            className="block bg-teal-400 text-lg rounded p-4 mx-auto"
+            className="block bg-purple-600 text-white text-lg rounded p-4 mx-auto"
             type="submit"
           >
             Register
