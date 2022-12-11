@@ -3,7 +3,7 @@ import Link from 'next/link';
 function Cart() {
   const {
     isEmpty,
-    totalUniqueItems,
+    totalItems,
     items,
     updateItemQuantity,
     removeItem,
@@ -26,27 +26,39 @@ function Cart() {
           p-2
         "
     >
-      <h1>Cart ({totalUniqueItems})</h1>
+      <h1 className="tab-lg">Cart ({totalItems})</h1>
 
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            {item.name}({item.quantity})
-            <button
-              onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
-            >
-              -
-            </button>
-            <button
-              onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-            >
-              +
-            </button>
-            <button onClick={() => removeItem(item.id)}>&times;</button>
+            <div className="btn-group">
+              <button
+                className="btn btn-ghost bg-teal-400 mb-1"
+                onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+              >
+                +
+              </button>
+              <button
+                className="btn btn-ghost bg-teal-400"
+                onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
+              >
+                -
+              </button>
+              <button className="btn btn-ghost w-40 bg-slate-300  pointer-events-none">
+                {item.name} ({item.quantity})
+              </button>
+
+              <button
+                className="btn btn-ghost bg-red-400"
+                onClick={() => removeItem(item.id)}
+              >
+                &times;
+              </button>
+            </div>
           </li>
         ))}
       </ul>
-      <h2>Total: ${cartTotal.toFixed(2)}</h2>
+      <h2 className="tab-lg text-xl mt-6">Total: ${cartTotal.toFixed(2)}</h2>
     </div>
   );
 }
