@@ -106,7 +106,7 @@ function CheckoutForm() {
       />
       <CardSection data={data} stripeError={error} submitOrder={submitOrder} />
       {success && (
-        <div className="bg-green-400 rounded-xl text-black h-24 justify-center align-middle">
+        <div className="bg-green-300 mt-2 rounded-xl text-black h-24 justify-center align-middle">
           <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
             Order Placed Successfully!
           </h1>

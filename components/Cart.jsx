@@ -10,7 +10,8 @@ function Cart() {
     cartTotal,
   } = useCart();
 
-  if (isEmpty) return <p className="mt-4">Your cart is empty</p>;
+  if (isEmpty)
+    return <p className="m-4 justify-self-center">Your cart is empty.</p>;
 
   return (
     <div
