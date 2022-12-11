@@ -1,6 +1,8 @@
 import DishesList from '../../components/DishesList';
 import { fetcher } from '../../lib/api';
 import { useState } from 'react';
+import Cart from '../../components/Cart';
+import Link from 'next/link';
 export default function Restaurant({ restaurant, dishes }) {
   const [value, setValue] = useState('');
   return (
@@ -22,6 +24,15 @@ export default function Restaurant({ restaurant, dishes }) {
         className="md:p-2 form-input py-2 mb-6 rounded  text-slate-900"
       />
       <DishesList dishes={dishes} value={value} />
+      <div className="grid grid-cols-1 mt-4">
+        <Cart />
+        <Link
+          className="btn btn-ghost bg-purple-400 md:w-1/2 justify-self-center"
+          href="/checkout"
+        >
+          go to checkout
+        </Link>
+      </div>
     </>
   );
 }
