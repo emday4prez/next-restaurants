@@ -2,9 +2,11 @@ import Cart from '../components/Cart';
 import Link from 'next/link';
 function Order() {
   return (
-    <div>
+    <div className="grid grid-cols-1">
       <Cart />
-      <Link href="/checkout">go to checkout</Link>
+      <Link className="btn btn-ghost bg-purple-400" href="/checkout">
+        go to checkout
+      </Link>
     </div>
   );
 }

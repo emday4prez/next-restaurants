@@ -3,14 +3,15 @@ import { CardElement } from '@stripe/react-stripe-js';
 function CardSection(props) {
   return (
     <div>
-      <div>
-        <label htmlFor="card-element">Credit or debit card</label>
+      <div className="mt-6">
+        <label htmlFor="card-element">Credit or Debit Card</label>
 
-        <div>
+        <div className="mt-4">
           <fieldset style={{ border: 'none' }}>
             <div className="form-row">
               <div id="card-element" style={{ width: '100%' }}>
                 <CardElement
+
                 // options={{
                 //   style: { width: '100%', base: { fontSize: '18px' } },
                 // }}

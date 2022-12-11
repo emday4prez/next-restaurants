@@ -11,7 +11,7 @@ function Navbar() {
   });
 
   const { user, loading } = useUser();
-  const { totalUniqueItems } = useCart();
+  const { totalItems } = useCart();
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -49,7 +49,7 @@ function Navbar() {
         <Link href="/view-cart" className=" normal-case text-md">
           <div className="indicator">
             <span className="indicator-item indicator-middle badge badge-secondary">
-              {totalUniqueItems}
+              {totalItems}
             </span>
             <button className="btn btn-ghost ">Cart</button>
           </div>
