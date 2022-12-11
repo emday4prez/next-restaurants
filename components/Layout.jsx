@@ -2,6 +2,7 @@ import Navbar from './Navbar';
 import Head from 'next/head';
 import { UserProvider } from '../lib/authContext';
 import { CartProvider } from 'react-use-cart';
+import Loginbar from './Loginbar';
 
 export default function Layout({ user, loading = false, children }) {
   return (
@@ -12,7 +13,7 @@ export default function Layout({ user, loading = false, children }) {
       <CartProvider>
         <UserProvider value={{ user, loading }}>
           <Navbar />
-
+          <Loginbar />
           <main className="px-2">
             <div
               className="

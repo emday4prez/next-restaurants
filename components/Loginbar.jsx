@@ -4,7 +4,7 @@ import { fetcher } from '../lib/api';
 import { setToken, unsetToken } from '../lib/auth';
 import { useUser } from '../lib/authContext';
 import { useCart } from 'react-use-cart';
-function Navbar() {
+function Loginbar() {
   const [data, setData] = useState({
     identifier: '',
     password: '',
@@ -42,21 +42,6 @@ function Navbar() {
 
   return (
     <div className="navbar bg-purple-600 text-white">
-      <div className="flex-1">
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
-          Restaurants App
-        </Link>
-      </div>{' '}
-      <div className="flex-none">
-        <Link href="/view-cart" className="normal-case text-md">
-          <div className="indicator">
-            <span className="indicator-item indicator-middle indicator-start badge badge-secondary">
-              {totalItems}
-            </span>
-            <button className="btn btn-ghost ">Cart</button>
-          </div>
-        </Link>
-      </div>
       {/* <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
           <li>
@@ -68,23 +53,10 @@ function Navbar() {
           </li>
         </ul>
       </div> */}
-      {/* {!loading &&
-        (user ? (
-          <li>
-            <p className="md:p-2 py-2 block">{user}</p>
-          </li>
-        ) : (
-          ''
-        ))}
       {!loading &&
         (user ? (
-          <li>
-            <Link
-              href="/profile"
-              className="md:p-2 py-2 block hover:text-teal-400"
-            >
-              Profile
-            </Link>
+          <li className="flex-1">
+            <p className="md:p-2 py-2 mx-4 block">{user}</p>
           </li>
         ) : (
           ''
@@ -92,9 +64,9 @@ function Navbar() {
 
       {!loading &&
         (user ? (
-          <li>
+          <li className="flex-none">
             <a
-              className="md:p-2 block hover:text-teal-400"
+              className="md:p-2  btn btn-ghost hover:text-teal-400"
               onClick={logout}
               style={{ cursor: 'pointer' }}
             >
@@ -106,8 +78,7 @@ function Navbar() {
         ))}
       {!loading && !user ? (
         <>
-          <li>
-            <div></div>
+          <li className="flex-1">
             <form onSubmit={handleSubmit} className="form-inline">
               <input
                 type="text"
@@ -126,27 +97,24 @@ function Navbar() {
                 required
               />
               <button
-                className="md:p-2 rounded py-2 text-black bg-purple-200 p-2"
+                className="md:p-2 rounded py-2 text-black bg-purple-200 p-2 hover:bg-purple-100"
                 type="submit"
               >
                 login
               </button>
             </form>
           </li>
-          <li>
-            <Link
-              href="/register"
-              className="md:p-2 block py-2 hover:text-teal-400 text-indigo-100"
-            >
+          <li className="flex-none">
+            <Link href="/register" className=" py-2 btn btn-ghost">
               Register
             </Link>
           </li>
         </>
       ) : (
         ''
-      )} */}
+      )}
     </div>
   );
 }
 
-export default Navbar;
+export default Loginbar;
