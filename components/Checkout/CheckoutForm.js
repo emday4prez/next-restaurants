@@ -12,9 +12,10 @@ function CheckoutForm() {
     stripe_id: '',
   });
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const { cartTotal, items } = useCart();
+  const { cartTotal, items, emptyCart } = useCart();
 
   function onChange(e) {
     const updateItem = (data[e.target.name] = e.target.value);
@@ -46,6 +47,13 @@ function CheckoutForm() {
     if (!response.ok) {
       setError(response.statusText);
     }
+    if (response.ok) {
+      setSuccess(true);
+      emptyCart();
+      setTimeout(() => {
+        setSuccess(false);
+      }, 10000);
+    }
   }
 
   return (
@@ -75,17 +83,17 @@ function CheckoutForm() {
         name="city"
         type="text"
         className="
-                 block
-                 w-full
-                 mt-1
-                 border-gray-300
-                 rounded-md
-                 shadow-sm
-                 focus:border-indigo-300
-                 focus:ring
-                 focus:ring-indigo-200
-                 focus:ring-opacity-50
-                "
+                    block
+                    w-full
+                    mt-1
+                    border-gray-300
+                    rounded-md
+                    shadow-sm
+                    focus:border-indigo-300
+                    focus:ring
+                    focus:ring-indigo-200
+                    focus:ring-opacity-50
+                  "
         placeholder=""
       />
       <span className="text-gray-700">State</span>
@@ -93,21 +101,17 @@ function CheckoutForm() {
         onChange={onChange}
         name="state"
         type="text"
-        className="
-                 block
-                 w-full
-                 mt-1
-                 border-gray-300
-                 rounded-md
-                 shadow-sm
-                 focus:border-indigo-300
-                 focus:ring
-                 focus:ring-indigo-200
-                 focus:ring-opacity-50
-                "
+        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder=""
       />
       <CardSection data={data} stripeError={error} submitOrder={submitOrder} />
+      {success && (
+        <div className="bg-green-400 rounded-xl text-black h-24 justify-center align-middle">
+          <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
+            Order Placed Successfully!
+          </h1>
+        </div>
+      )}
     </div>
   );
 }
