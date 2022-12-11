@@ -1,4 +1,5 @@
 import { useCart } from 'react-use-cart';
+import Link from 'next/link';
 function Cart() {
   const {
     isEmpty,

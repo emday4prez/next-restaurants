@@ -46,7 +46,7 @@ function Navbar() {
         <Link href="/" className="btn btn-ghost normal-case text-xl">
           Restaurants
         </Link>
-        <Link href="/order" className=" normal-case text-md">
+        <Link href="/view-cart" className=" normal-case text-md">
           <div className="indicator">
             <span className="indicator-item indicator-middle badge badge-secondary">
               {totalUniqueItems}
