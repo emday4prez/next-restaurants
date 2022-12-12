@@ -2,12 +2,11 @@ import RestaurantsList from '../components/RestaurantsList';
 import { fetcher } from '../lib/api';
 import useSWR from 'swr';
 import { useState } from 'react';
-import { useFetchUser } from '../lib/authContext';
 
 export default function Home({ restaurants }) {
   const [pageIndex, setPageIndex] = useState(1);
   const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=${pageIndex}&pagination[pageSize]=5`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=${pageIndex}&pagination[pageSize]=5&sort=name`,
     fetcher,
     { fallbackData: restaurants }
   );
@@ -16,7 +15,7 @@ export default function Home({ restaurants }) {
       <RestaurantsList restaurants={data} />
       <div className="space-x-2 space-y-2">
         <button
-          className={`md:p-2 rounded py-2 text-black text-white p-2 ${
+          className={`md:p-2 rounded py-2 text-white p-2 ${
             pageIndex === 1 ? 'bg-gray-300' : 'bg-purple-400'
           }`}
           disabled={pageIndex === 1}
@@ -25,7 +24,7 @@ export default function Home({ restaurants }) {
           Previous
         </button>
         <button
-          className={`md:p-2 rounded py-2 text-black text-white p-2 ${
+          className={`md:p-2 rounded py-2 text-white p-2 ${
             pageIndex === (data && data.meta.pagination.pageCount)
               ? 'bg-gray-300'
               : 'bg-purple-400'
@@ -47,7 +46,7 @@ export default function Home({ restaurants }) {
 
 export async function getStaticProps() {
   const restaurantsResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=1&pagination[pageSize]=5&populate=%2A`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=1&pagination[pageSize]=5&populate=%2A&sort=name`
   );
 
   return {
