@@ -22,7 +22,8 @@ function Cart() {
           items-center
           bg-indigo-100
           mx-auto
-          w-full
+          w-3/4
+          md:w-full
           rounded-lg
           p-2
         "

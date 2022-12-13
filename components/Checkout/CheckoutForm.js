@@ -12,6 +12,9 @@ function CheckoutForm() {
     stripe_id: '',
   });
   const [error, setError] = useState('');
+  const [addressError, setAddressError] = useState(false);
+  const [cityError, setCityError] = useState(false);
+  const [stateError, setStateError] = useState(false);
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -23,6 +26,28 @@ function CheckoutForm() {
   }
 
   async function submitOrder() {
+    if (data.address.trim().length < 5) {
+      setAddressError(true);
+      setTimeout(() => {
+        setAddressError(false);
+      }, 5000);
+      return;
+    }
+    if (data.city.trim().length < 2) {
+      setCityError(true);
+      setTimeout(() => {
+        setCityError(false);
+      }, 5000);
+      return;
+    }
+    if (data.state.trim().length < 2) {
+      setStateError(true);
+      setTimeout(() => {
+        setStateError(false);
+      }, 5000);
+      return;
+    }
+
     const cardElement = elements.getElement(CardElement);
     const token = await stripe.createToken(cardElement);
     const userToken = Cookies.get('token');
@@ -57,7 +82,7 @@ function CheckoutForm() {
   }
 
   return (
-    <div className="border-2 border-teal-400 p-4 rounded-xl w-96">
+    <div className="flex flex-col border-2 border-teal-400 p-4 rounded-xl md:w-96 w-80 ">
       <span className="text-gray-700">Address</span>
       <input
         name="address"
@@ -109,6 +134,27 @@ function CheckoutForm() {
         <div className="bg-green-300 mt-2 rounded-xl text-black h-24 justify-center align-middle">
           <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
             Order Placed Successfully!
+          </h1>
+        </div>
+      )}
+      {addressError && (
+        <div className="bg-red-300 mt-2 rounded-xl text-black h-24 justify-center align-middle">
+          <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
+            Address must be at least 5 characters!
+          </h1>
+        </div>
+      )}
+      {cityError && (
+        <div className="bg-red-300 mt-2 rounded-xl text-black h-24 justify-center align-middle">
+          <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
+            City must be at least 2 characters!
+          </h1>
+        </div>
+      )}
+      {stateError && (
+        <div className="bg-red-300 mt-2  rounded-xl text-black h-24 justify-center align-middle">
+          <h1 className="md:text-xl font-extrabold rounded leading-tighter p-8 mb-4">
+            State must be at least 2 characters!
           </h1>
         </div>
       )}
