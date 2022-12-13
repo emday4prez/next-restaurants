@@ -15,16 +15,16 @@ export default function Layout({ user, loading = false, children }) {
           <Loginbar />
           <Navbar />
 
-          <main className="px-2 min-w-min">
+          <main className="px-2">
             <div
               className="
           flex
-          justify-center
-          md:items-center
-          items-left
+          
+          justify-left
+          sm:justify-center
           bg-indigo-100
           mx-auto
-          min-w
+          
           md:w-5/6
           rounded-lg
           mt-8

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { fetcher } from '../lib/api';
 import { setToken, unsetToken } from '../lib/auth';
 import { useUser } from '../lib/authContext';
-import { useCart } from 'react-use-cart';
+
 function Loginbar() {
   const [data, setData] = useState({
     identifier: '',
@@ -72,7 +72,7 @@ function Loginbar() {
                 name="identifier"
                 onChange={handleChange}
                 placeholder="Username"
-                className="md:p-2 form-input py-2 rounded mx-2 text-slate-900"
+                className="md:p-2 form-input py-2 rounded mt-2 text-slate-900"
                 required
               />
               <input
@@ -80,11 +80,11 @@ function Loginbar() {
                 name="password"
                 onChange={handleChange}
                 placeholder="Password"
-                className="md:p-2 form-input py-2 text-slate-900 rounded mx-2"
+                className="md:p-2 form-input py-2 m2-4 text-slate-900 rounded"
                 required
               />
               <button
-                className="mx-2  rounded  text-black bg-purple-200 p-2 hover:bg-purple-100"
+                className="rounded text-black bg-purple-200 p-2 hover:bg-purple-100"
                 type="submit"
               >
                 login
@@ -92,7 +92,7 @@ function Loginbar() {
             </form>
           </li>
           <li className="flex-none">
-            <Link href="/register" className=" py-2 btn btn-ghost">
+            <Link href="/register" className="btn  btn-ghost   p-0.5">
               Register
             </Link>
           </li>
