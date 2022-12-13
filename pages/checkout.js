@@ -13,7 +13,7 @@ function Checkout() {
   );
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center">
       <h1 className="text-4xl mb-6">Checkout</h1>
       <div className="grid grid-cols-1 gap-4">
         <Cart className="" />

@@ -12,20 +12,24 @@ export default function Layout({ user, loading = false, children }) {
       </Head>
       <CartProvider>
         <UserProvider value={{ user, loading }}>
-          <Navbar />
           <Loginbar />
-          <main className="px-2">
+          <Navbar />
+
+          <main className="px-2 min-w-min">
             <div
               className="
           flex
           justify-center
-          items-center
+          md:items-center
+          items-left
           bg-indigo-100
           mx-auto
-          w-5/6
+          min-w
+          md:w-5/6
           rounded-lg
           mt-8
-          p-16
+          p-2
+          md:p-16
         "
             >
               <div className="text-2xl font-medium">{children}</div>

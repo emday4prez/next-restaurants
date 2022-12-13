@@ -11,7 +11,6 @@ function Loginbar() {
   });
 
   const { user, loading } = useUser();
-  const { totalItems } = useCart();
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -41,37 +40,25 @@ function Loginbar() {
   };
 
   return (
-    <div className="navbar bg-purple-600 text-white">
-      {/* <div className="flex-none">
-        <ul className="menu menu-horizontal p-0">
-          <li>
-            <Link href="/register">Register</Link>
-          </li>
-          
-          <li>
-            <Link href="login">Login</Link>
-          </li>
-        </ul>
-      </div> */}
+    <div className="navbar bg-purple-600 text-white space-between">
       {!loading &&
         (user ? (
           <li className="flex-1">
-            <p className="md:p-2 py-2 mx-4 block">{user}</p>
+            <a
+              className="md:p-2  btn btn-ghost lowercase hover:text-teal-400"
+              onClick={logout}
+              style={{ cursor: 'pointer' }}
+            >
+              Log out
+            </a>
           </li>
         ) : (
           ''
         ))}
-
       {!loading &&
         (user ? (
           <li className="flex-none">
-            <a
-              className="md:p-2  btn btn-ghost hover:text-teal-400"
-              onClick={logout}
-              style={{ cursor: 'pointer' }}
-            >
-              Logout
-            </a>
+            <p className="md:p-2 ">{user}</p>
           </li>
         ) : (
           ''

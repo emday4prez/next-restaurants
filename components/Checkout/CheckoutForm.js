@@ -82,7 +82,7 @@ function CheckoutForm() {
   }
 
   return (
-    <div className="flex flex-col border-2 border-teal-400 p-4 rounded-xl md:w-96 w-80 ">
+    <div className="border-2 border-teal-400 p-4 rounded-xl md:w-96 w-11/12 ">
       <span className="text-gray-700">Address</span>
       <input
         name="address"
