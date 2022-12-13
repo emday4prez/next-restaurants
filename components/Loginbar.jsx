@@ -97,7 +97,7 @@ function Loginbar() {
                 required
               />
               <button
-                className="md:p-2 rounded py-2 text-black bg-purple-200 p-2 hover:bg-purple-100"
+                className="mx-2  rounded  text-black bg-purple-200 p-2 hover:bg-purple-100"
                 type="submit"
               >
                 login
