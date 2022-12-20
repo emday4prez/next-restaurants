@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 export default function Login() {
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -61,7 +61,7 @@ export default function Login() {
 
         <p className="mt-8 text-xs font-light text-center text-gray-700">
           {' '}
-          Don't have an account?{' '}
+          Need have an account?{' '}
           <Link
             href="/signup"
             className="font-medium text-purple-600 hover:underline"
@@ -71,5 +71,5 @@ export default function Login() {
         </p>
       </div>
     </div>
-  )
+  );
 }
