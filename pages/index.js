@@ -13,7 +13,7 @@ export default function Home({ restaurants }) {
   return (
     <>
       <RestaurantsList restaurants={data} />
-      <div className="space-x-2 space-y-2">
+      {/* <div className="space-x-2 space-y-2">
         <button
           className={`md:p-2 rounded py-2 text-white p-2 ${
             pageIndex === 1 ? 'bg-gray-300' : 'bg-purple-400'
@@ -37,7 +37,7 @@ export default function Home({ restaurants }) {
         <span>{`${pageIndex} of ${
           data && data.meta.pagination.pageCount
         }`}</span>
-      </div>
+      </div> */}
     </>
   );
 }
