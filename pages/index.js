@@ -4,12 +4,17 @@ import useSWR from 'swr';
 import { useState } from 'react';
 
 export default function Home({ restaurants }) {
-  const [pageIndex, setPageIndex] = useState(1);
+  //const [pageIndex, setPageIndex] = useState(1);
   const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=${pageIndex}&pagination[pageSize]=5&sort=name`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants`,
     fetcher,
     { fallbackData: restaurants }
   );
+  // const { data } = useSWR(
+  //   `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=${pageIndex}&pagination[pageSize]=5&sort=name`,
+  //   fetcher,
+  //   { fallbackData: restaurants }
+  // );
   return (
     <>
       <RestaurantsList restaurants={data} />
@@ -46,8 +51,11 @@ export default function Home({ restaurants }) {
 
 export async function getStaticProps() {
   const restaurantsResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=1&pagination[pageSize]=5&populate=%2A&sort=name`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants`
   );
+  // const restaurantsResponse = await fetcher(
+  //   `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=1&pagination[pageSize]=5&populate=%2A&sort=name`
+  // );
 
   return {
     props: {
