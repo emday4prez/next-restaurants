@@ -17,7 +17,8 @@ export default function Home({ restaurants }) {
   // );
   return (
     <>
-      <RestaurantsList restaurants={data} />
+      {data ? <RestaurantsList restaurants={data} /> : <div>Loading...</div>}
+
       {/* <div className="space-x-2 space-y-2">
         <button
           className={`md:p-2 rounded py-2 text-white p-2 ${
