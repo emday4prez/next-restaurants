@@ -11,16 +11,18 @@ function RestaurantsList({ restaurants }) {
         </span>
       </h1>
 
-      <input
-        type="search"
-        name="search"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="Search"
-        className="md:p-2 form-input py-2 mb-6 rounded  text-slate-900"
-      />
+      {restaurants && (
+        <input
+          type="search"
+          name="search"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Search"
+          className="md:p-2 form-input py-2 mb-6 rounded  text-slate-900"
+        />
+      )}
 
-      <Restaurants restaurants={restaurants} value={value} />
+      {restaurants && <Restaurants restaurants={restaurants} value={value} />}
     </div>
   );
 }
