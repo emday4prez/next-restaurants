@@ -19,14 +19,16 @@ export default function Restaurant({ restaurant, dishes }) {
           {restaurant.attributes.description}
         </p>
       )}
-      <input
-        type="search"
-        name="search"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="Search"
-        className="md:p-2 form-input py-2 mb-6 rounded  text-slate-900"
-      />
+      {restaurant && (
+        <input
+          type="search"
+          name="search"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Search"
+          className="md:p-2 form-input py-2 mb-6 rounded  text-slate-900"
+        />
+      )}
       {dishes && <DishesList dishes={dishes} value={value} />}
       <div className="grid grid-cols-1 mt-4">
         <Cart />
