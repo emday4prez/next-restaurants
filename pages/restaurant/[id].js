@@ -8,13 +8,17 @@ export default function Restaurant({ restaurant, dishes }) {
   return (
     <>
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400">
-          {restaurant.attributes.name}
-        </span>
+        {restaurant && (
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400">
+            {restaurant.attributes.name}
+          </span>
+        )}
       </h1>
-      <p className="text-sm md:text-lg leading-tight mb-6">
-        {restaurant.attributes.description}
-      </p>
+      {restaurant && (
+        <p className="text-sm md:text-lg leading-tight mb-6">
+          {restaurant.attributes.description}
+        </p>
+      )}
       <input
         type="search"
         name="search"
@@ -23,7 +27,7 @@ export default function Restaurant({ restaurant, dishes }) {
         placeholder="Search"
         className="md:p-2 form-input py-2 mb-6 rounded  text-slate-900"
       />
-      <DishesList dishes={dishes} value={value} />
+      {dishes && <DishesList dishes={dishes} value={value} />}
       <div className="grid grid-cols-1 mt-4">
         <Cart />
         <Link

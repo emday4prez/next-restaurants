@@ -5,11 +5,7 @@ import { useState } from 'react';
 
 export default function Home({ restaurants }) {
   //const [pageIndex, setPageIndex] = useState(1);
-  const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants`,
-    fetcher,
-    { fallbackData: restaurants }
-  );
+
   // const { data } = useSWR(
   //   `${process.env.NEXT_PUBLIC_STRAPI_URL}/restaurants?pagination[page]=${pageIndex}&pagination[pageSize]=5&sort=name`,
   //   fetcher,
@@ -17,7 +13,7 @@ export default function Home({ restaurants }) {
   // );
   return (
     <>
-      {data ? <RestaurantsList restaurants={data} /> : <div>Loading...</div>}
+      <RestaurantsList restaurants={restaurants} />
 
       {/* <div className="space-x-2 space-y-2">
         <button
